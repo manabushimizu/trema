@@ -32,7 +32,6 @@ module Trema
       src_mac.insert 8, ":"
       src_mac.insert 11, ":"
       src_mac.insert 14, ":"
-      #puts "in Ruby #{ src_mac }"
 
       send_packet_out_lldp datapath_id, src_mac, port
     end

@@ -42,6 +42,9 @@
 extern VALUE mTrema;
 
 
+/*
+ * This function is called from send_packet_out_lldp().
+ */
 void
 make_lldp_and_send_message( const uint64_t datapath_id, const long int port, const char *src_mac_address, const char *dst_mac_address ) {
   struct ether_addr src_mac_addr;
@@ -137,7 +140,6 @@ make_lldp_and_send_message( const uint64_t datapath_id, const long int port, con
 
 /*
  * Parse hex string.
- *
  * @return [Nmber] the value of chassis id.
  */
 uint64_t
@@ -167,6 +169,7 @@ parse_lldp_ull( void *str, uint32_t len ) {
 
 /*
  * Send LLDP frame.
+ * This is wrapped by Trema::LLDP.probe.
  */
 VALUE
 send_packet_out_lldp( VALUE self, VALUE rb_datapath_id, VALUE rb_src_macaddr, VALUE rb_port ) {
@@ -187,7 +190,6 @@ send_packet_out_lldp( VALUE self, VALUE rb_datapath_id, VALUE rb_src_macaddr, VA
 
 /*
  * Get LLDP chassis id.
- *
  * @return [number] the Ruby object of number.
  */
 VALUE
